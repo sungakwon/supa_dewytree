@@ -345,7 +345,7 @@
     gap: 10px;
 }
 
-.buy-now-button {
+/* .buy-now-button {
     padding: 15px;
     border: none;
     border-radius: 4px;
@@ -354,7 +354,7 @@
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
-}
+} */
 
 .add-to-cart-button {
     padding: 15px;

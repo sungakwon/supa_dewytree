@@ -163,6 +163,15 @@ function goToMainPage() {
     window.location.href = version === '1' ? 'index1.html' : 'index2.html';
 }
 
+// 제품의 line 값을 결정하는 함수
+function getProductLine(productName) {
+    const lowerName = productName.toLowerCase();
+    if (lowerName.includes('파우더') || lowerName.includes('밤') || lowerName.includes('밀크')) {
+        return 'amino';
+    }
+    return 'ac';
+}
+
 // DOM이 로드된 후 이벤트 리스너 등록
 
     // DOM 요소 선택
@@ -283,7 +292,7 @@ function goToMainPage() {
                         cart_id: cart.id,
                         product_id: productDetail.id,
                         product_name: productDetail.name,
-                        line: 'ac',
+                        line: getProductLine(productDetail.name),  // 제품 이름에 따라 line 결정
                         quantity: quantity,
                         unit_price: productDetail.price,
                         added_at: new Date().toISOString()
@@ -336,73 +345,72 @@ function goToMainPage() {
     
 
     // 바로 구매하기 버튼 클릭 이벤트
-    buyNowButton.addEventListener('click', async function () {
-        const quantity = parseInt(quantityInput.value);
+    // buyNowButton.addEventListener('click', async function () {
+    //     const quantity = parseInt(quantityInput.value);
         
-        try {
-            let sessionId = sessionStorage.getItem('sessionId');
-            if (!sessionId) {
-                sessionId = crypto.randomUUID();
-                sessionStorage.setItem('sessionId', sessionId);
-            }
+    //     try {
+    //         let sessionId = sessionStorage.getItem('sessionId');
+    //         if (!sessionId) {
+    //             sessionId = crypto.randomUUID();
+    //             sessionStorage.setItem('sessionId', sessionId);
+    //         }
     
-            // 기존 cart 존재 여부 확인
-            let { data: existingCart, error: findCartError } = await supabase
-                .from('carts')
-                .select('id')
-                .eq('session_id', sessionId)
-                .single();
+    //         // 기존 cart 존재 여부 확인
+    //         let { data: existingCart, error: findCartError } = await supabase
+    //             .from('carts')
+    //             .select('id')
+    //             .eq('session_id', sessionId)
+    //             .single();
     
-            if (findCartError || !existingCart) {
-                const { data: newCart, error: createCartError } = await supabase
-                    .from('carts')
-                    .insert({ session_id: sessionId })
-                    .select()
-                    .single();
+    //         if (findCartError || !existingCart) {
+    //             const { data: newCart, error: createCartError } = await supabase
+    //                 .from('carts')
+    //                 .insert({ session_id: sessionId })
+    //                 .select()
+    //                 .single();
     
-                if (createCartError) throw createCartError;
-                existingCart = newCart;
-            }
+    //             if (createCartError) throw createCartError;
+    //             existingCart = newCart;
+    //         }
     
-            // cart_items에 추가
-            const { error: insertError } = await supabase
-                .from('cart_items')
-                .insert({
-                    cart_id: existingCart.id,
-                    product_id: productDetail.id,
-                    product_name: productDetail.name,
-                    line: productDetail.name.toLowerCase().includes('ac') ? 'ac' : 'amino',
-                    quantity: quantity,
-                    unit_price: productDetail.price,
-                    total_price: productDetail.price * quantity,
-                    added_at: new Date().toISOString()
-                });
+    //         // cart_items에 추가
+    //         const { error: insertError } = await supabase
+    //             .from('cart_items')
+    //             .insert({
+    //                 cart_id: existingCart.id,
+    //                 product_id: productDetail.id,
+    //                 product_name: productDetail.name,
+    //                 line: productDetail.name.toLowerCase().includes('amino') ? 'amino' : 'ac',
+    //                 quantity: quantity,
+    //                 unit_price: productDetail.price,
+    //                 added_at: new Date().toISOString()
+    //             });
     
-            if (insertError) throw insertError;
+    //         if (insertError) throw insertError;
     
-            // GA 이벤트
-            // if (typeof gtag === 'function') {
-            //     gtag('event', 'buy_now', {
-            //         currency: 'KRW',
-            //         value: productDetail.price * quantity,
-            //         items: [{
-            //             item_id: productDetail.id,
-            //             item_name: productDetail.name,
-            //             price: productDetail.price,
-            //             quantity: quantity,
-            //             currency: 'KRW'
-            //         }]
-            //     });
-            // }
+    //         // GA 이벤트
+    //         // if (typeof gtag === 'function') {
+    //         //     gtag('event', 'buy_now', {
+    //         //         currency: 'KRW',
+    //         //         value: productDetail.price * quantity,
+    //         //         items: [{
+    //         //             item_id: productDetail.id,
+    //         //             item_name: productDetail.name,
+    //         //             price: productDetail.price,
+    //         //             quantity: quantity,
+    //         //             currency: 'KRW'
+    //         //         }]
+    //         //     });
+    //         // }
     
-            // 주문 페이지 이동
-            window.location.href = 'order.html';
+    //         // 주문 페이지 이동
+    //         window.location.href = 'order.html';
     
-        } catch (error) {
-            console.error('바로 구매 중 오류 발생:', error);
-            alert('바로 구매 중 오류가 발생했습니다. 다시 시도해주세요.');
-        }
-    });
+    //     } catch (error) {
+    //         console.error('바로 구매 중 오류 발생:', error);
+    //         alert('바로 구매 중 오류가 발생했습니다. 다시 시도해주세요.');
+    //     }
+    // });
     
 
 
