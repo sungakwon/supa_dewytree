@@ -31,26 +31,11 @@
             </div>
             <div class="form-group">
                 <label for="phone">연락처<span class="required">*</span></label>
-                <div class="phone-inputs">
-                    <input type="tel" id="phone1" maxlength="3" required>
-                    <span class="phone-divider">-</span>
-                    <input type="tel" id="phone2" maxlength="4" required>
-                    <span class="phone-divider">-</span>
-                    <input type="tel" id="phone3" maxlength="4" required>
-                </div>
+                <input type="tel" id="phone" required>
             </div>
             <div class="form-group">
                 <label for="address">배송지<span class="required">*</span></label>
-                <div class="address-search">
-                    <input type="text" id="postcode" placeholder="우편번호" readonly required>
-                    <button type="button" onclick="searchAddress()">주소 검색</button>
-                </div>
-                <input type="text" id="address1" placeholder="기본주소" readonly required>
-                <input type="text" id="address2" placeholder="상세주소" required>
-            </div>
-            <div class="form-group">
-                <label for="delivery-request">배송 요청사항</label>
-                <input type="text" id="delivery-request">
+                <input type="text" id="address1" placeholder="주소" required>
             </div>
         </section>
 
@@ -98,9 +83,7 @@
             </div>
         </section>
 
-        <button class="order-button" id="orderButton" onclick="processOrder(); trackGA4Event('purchase', {currency: 'KRW', value: parseFloat(document.getElementById('total').innerText.replace('원', '').replace(',', '')), transaction_id: 'ORDER-' + Date.now()});" disabled>
-            결제하기
-        </button>
+        <button class="checkout-btn" id="orderButton" disabled>결제하기</button>
     </main>
 
     <footer class="footer">
@@ -125,4 +108,4 @@
 
     <script type="module" src="/src/order.js"></script>
 </body>
-</html> 
+</html>

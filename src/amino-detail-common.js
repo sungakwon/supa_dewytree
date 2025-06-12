@@ -76,7 +76,7 @@ addToCartButton.addEventListener('click', async function () {
                 cart_id: existingCart.id,
                 product_id: productDetail.id,
                 product_name: productDetail.name,
-                line: productDetail.line || 'amino', // 'ac' 또는 'amino'
+                line: 'amino',
                 quantity: quantity,
                 unit_price: productDetail.price,
                 added_at: new Date().toISOString()

@@ -37,11 +37,21 @@ body {
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
+    margin-bottom: 10px;
 }
 
-.form-group input[type="tel"] {
-    width: calc(33.33% - 10px);
-    display: inline-block;
+.phone-inputs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.phone-inputs input {
+    width: 30%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
 .phone-divider {
@@ -154,32 +164,29 @@ body {
     margin-top: 10px;
 }
 
-.order-button {
+.checkout-btn {
     width: 100%;
+    max-width: 400px;
     padding: 20px;
+    font-size: 20px;
+    font-weight: 600;
     background-color: #333;
     color: white;
     border: none;
-    border-radius: 4px;
-    font-size: 18px;
-    font-weight: 500;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    margin: 40px auto 0;
+    display: block;
+    text-align: center;
 }
 
-.order-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-
-.order-button:hover:not(:disabled) {
+.checkout-btn:hover {
     background-color: #444;
 }
 
-.required {
-    color: #ff6b6b;
-    margin-left: 2px;
+.checkout-btn:disabled {
+    background-color: #999;
+    cursor: not-allowed;
 }
 
 /* 모바일 반응형 스타일 */
@@ -215,7 +222,7 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .order-button {
+    .checkout-btn {
         font-size: 16px;
         padding: 15px;
     }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Analytics 태그 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VFQZ1B9D87"></script>
-    <script>
+    <script type="module">
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/src/ac-detail-common.css">
     <!-- 상품 정보 설정 -->
-    <script>
+    <script type="module">
         window.productDetail = {
             id: 'AC-AMPOULE-001',
             name: 'AC 딥 장벽 진정 앰플',
@@ -40,18 +40,10 @@
                     <a href="#product">PRODUCT</a>
                     <div class="dropdown-content">
                         <div class="menu-column">
-                            <div class="menu-title">BY CATEGORY</div>
-                            <ul class="submenu">
-                                <li><a href="#">클렌징</a></li>
-                                <li><a href="#">스킨케어</a></li>
-                                <li><a href="#">마스크팩</a></li>
-                            </ul>
-                        </div>
-                        <div class="menu-column">
                             <div class="menu-title">BY LINE</div>
                             <ul class="submenu">
-                                <li><a href="amino-product.html#version-a">AC라인</a></li>
-                                <li><a href="amino-product.html#version-b">AMINO라인</a></li>
+                                <li><a href="amino-product.html#version-a" onclick="saveVersion('A'); return true;">AC라인</a></li>
+                                <li><a href="amino-product.html#version-b" onclick="saveVersion('B'); return true;">AMINO라인</a></li>
                             </ul>
                         </div>
                     </div>
@@ -124,7 +116,7 @@
                 <p>이메일: cs@dewytree.com | 전화: 02-1234-5678</p>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 DEWYTREE. All Rights Reserved.</p>
+                <p> 2024 DEWYTREE. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -138,7 +130,7 @@
             <button class="popup-button go-to-cart">장바구니로 이동</button>
         </div>
     </div>
-    <script>
+    <script type="module">
         // 스크립트가 DOMContentLoaded 이벤트를 기다리고 있기 때문에,
         // 페이지 로드 후에 스크립트를 동적으로 로드합니다
         document.addEventListener('DOMContentLoaded', function() {
@@ -149,4 +141,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
