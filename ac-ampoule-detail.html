@@ -130,15 +130,6 @@
             <button class="popup-button go-to-cart">장바구니로 이동</button>
         </div>
     </div>
-    <script type="module">
-        // 스크립트가 DOMContentLoaded 이벤트를 기다리고 있기 때문에,
-        // 페이지 로드 후에 스크립트를 동적으로 로드합니다
-        document.addEventListener('DOMContentLoaded', function() {
-            const script = document.createElement('script');
-            script.type = 'module';
-            script.src = '/src/ac-detail-common.js';
-            document.body.appendChild(script);
-        });
-    </script>
+    <script type="module" src="/src/ac-detail-common.js"></script>
 </body>
 </html>
